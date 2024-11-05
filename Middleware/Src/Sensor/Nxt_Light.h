@@ -68,6 +68,15 @@ class Nxt_Light : public Sensor
     {
 			return(gain*((float)(orb.getSensor(port).value[0]&0xFFF)-offset));
     }
+
+    BYTE getPort(){
+      return port;
+    }
+
+    void setCallibration(int k0, int k1){
+        gain = 100.0 /(k1 - k0);
+        offset = k0;
+    }
 		
 		    //---------------------------------------------------------------
     /*! Kalibration des Sensors (nur ANALOG), s.d. aktueller Sensorwert
